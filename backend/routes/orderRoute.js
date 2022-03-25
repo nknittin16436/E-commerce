@@ -1,0 +1,14 @@
+const express = require('express');
+const Order = require("../models/orderModel");
+const { newOrder, getSingleOrder, myOrders, myOrders1 } = require('../controllers/orderController');
+const { isUserAuthenticated, authorizeRoles} = require('../middleware/authentication');
+const router = express.Router();
+
+router.route("/order/new").post(isUserAuthenticated,newOrder);
+router.route("/order/me").get(isUserAuthenticated,myOrders);
+// router.route("/order/:id").get(isUserAuthenticated,authorizeRoles("admin"),getSingleOrder);
+router.route("/order/:id").get(isUserAuthenticated,getSingleOrder);
+
+
+
+module.exports = router
