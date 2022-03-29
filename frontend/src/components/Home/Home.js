@@ -1,7 +1,13 @@
-import React, { Fragment } from "react";
+import React, { Fragment,useEffect } from "react";
 import { CgMouse } from "react-icons/cg"
+import MetaData from "../layout/MetaData";
 import './Home.css'
 import Product from  './Product.js'
+import {getProducts} from '../../actions/productAction'
+import { useSelector,useDispatch } from "react-redux";
+
+
+
 
 
 const product={
@@ -12,8 +18,15 @@ const product={
 
 }
 const Home = () => {
+  const dispatch=useDispatch();
+
+  useEffect(() => {
+  dispatch(getProducts());
+   
+  }, [dispatch]);
   return (
     <Fragment>
+      <MetaData title={"E-Commerce"}/>
       <div className="banner">
         <p>Welcome to Ecommerce</p>
         <h1>Find Amazing Products Below</h1>
