@@ -10,6 +10,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Loader from './components/layout/Loader/Loader';
+import ProductDetails from './components/Product/ProductDetails';
 
 
 function App() {
@@ -32,6 +34,8 @@ function App() {
      <Routes>
 
      <Route exact path ="/" element={<Home/>} />
+     <Route exact path ="/product/:id" element={<ProductDetails/>} />
+     
     
      </Routes>
      <Footer/>

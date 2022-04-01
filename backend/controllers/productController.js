@@ -27,7 +27,7 @@ exports.createProduct = catchAsyncError(async (req, res, next) => {
 
 // GET ALL PRODUCT
 
-exports.getAllProducts = catchAsyncError(async (req, res) => {
+exports.getAllProducts = catchAsyncError(async (req, res,next) => {
       // try {
 
       //       const products = await Product.find();
@@ -41,14 +41,16 @@ exports.getAllProducts = catchAsyncError(async (req, res) => {
       //FOR SEACRHING FOR SPECIFIC KEYWORD
 
       //FOR RESULT PER PAGE
+
+      // return next(new ErrorHandler("Temp erroe nkn nittin",500));//FOR CHECKING OF ERROR TEMPLATE IIN REACT.JS
       const resultPerPage = 8;
-      const productCount = await Product.countDocuments();
+      const productsCount = await Product.countDocuments();
       const apiFeature = new ApiFeatures(Product.find(), req.query)
             .search()
             .filter()
             .pagination(resultPerPage);
       const products = await apiFeature.query;
-      res.status(200).json({ success: true, products, productCount });
+      res.status(200).json({ success: true, products, productsCount });
 });
 
 // UPDATE PRODUCT--Admin
