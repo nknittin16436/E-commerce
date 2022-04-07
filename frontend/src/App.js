@@ -12,6 +12,8 @@ import {
 } from "react-router-dom";
 import Loader from './components/layout/Loader/Loader';
 import ProductDetails from './components/Product/ProductDetails';
+import Products from './components/Product/Products.js'
+import Search from './components/Product/Search.js'
 
 
 function App() {
@@ -27,7 +29,7 @@ function App() {
 
 
   return (
-   
+    
    <Router>
 
      <Header/>
@@ -35,6 +37,9 @@ function App() {
 
      <Route exact path ="/" element={<Home/>} />
      <Route exact path ="/product/:id" element={<ProductDetails/>} />
+     <Route exact path ="/products" element={<Products/>} />
+     <Route exact path ="/products/:keyword" element={<Products/>} />
+     <Route exact path ="/search" element={<Search/>} />
      
     
      </Routes>

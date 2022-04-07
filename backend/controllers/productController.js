@@ -43,14 +43,14 @@ exports.getAllProducts = catchAsyncError(async (req, res,next) => {
       //FOR RESULT PER PAGE
 
       // return next(new ErrorHandler("Temp erroe nkn nittin",500));//FOR CHECKING OF ERROR TEMPLATE IIN REACT.JS
-      const resultPerPage = 8;
+      const resultPerPage = 4;
       const productsCount = await Product.countDocuments();
       const apiFeature = new ApiFeatures(Product.find(), req.query)
             .search()
             .filter()
             .pagination(resultPerPage);
       const products = await apiFeature.query;
-      res.status(200).json({ success: true, products, productsCount });
+      res.status(200).json({ success: true, products, productsCount ,resultPerPage});
 });
 
 // UPDATE PRODUCT--Admin
