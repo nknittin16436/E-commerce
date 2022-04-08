@@ -6,7 +6,7 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import { useSelector, useDispatch } from "react-redux";
-import { login, clearErrors } from "../../actions/userAction";
+import { login,register, clearErrors } from "../../actions/userAction";
 import { useAlert } from "react-alert";
 
 
@@ -81,6 +81,8 @@ const LoginSignUp = () => {
     myForm.set("avatar", avatar);
 
     console.log("Sign Up Form Submitted");
+
+    dispatch(register(myForm));
   };
 
   const registerDataChange = (e) => {
