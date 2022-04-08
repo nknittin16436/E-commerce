@@ -1,5 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import MetaData from "../layout/MetaData";
+
 
 import './Search.css'
 
@@ -18,6 +20,8 @@ const Search = () => {
   };
   return (
     <Fragment>
+                <MetaData title="SEARCH A PRODUCT-ECOMMERCE"/>
+
       <form className="searchBox" onSubmit={searchSubmitHandler}>
         <input
           type="text"

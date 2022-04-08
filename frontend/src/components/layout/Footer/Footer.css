@@ -6,6 +6,7 @@
       color: white;
       display: flex;
       align-items: center;
+      bottom: 0;
   }
 
   .leftFooter{
