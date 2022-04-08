@@ -8,12 +8,11 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link
 } from "react-router-dom";
-import Loader from './components/layout/Loader/Loader';
 import ProductDetails from './components/Product/ProductDetails';
 import Products from './components/Product/Products.js'
 import Search from './components/Product/Search.js'
+import LoginSignUp from './components/User/LoginSignUp';
 
 
 function App() {
@@ -40,6 +39,7 @@ function App() {
      <Route exact path ="/products" element={<Products/>} />
      <Route exact path ="/products/:keyword" element={<Products/>} />
      <Route exact path ="/search" element={<Search/>} />
+     <Route exact path ="/login" element={<LoginSignUp/>} />
      
     
      </Routes>
