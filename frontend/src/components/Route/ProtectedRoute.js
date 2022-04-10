@@ -1,15 +1,15 @@
-import React,{Fragment} from 'react'
-import { useSelector, useDispatch } from "react-redux";
-import { Navigate, Route } from "react-router-dom";
+// import React,{Fragment} from 'react'
+// import { useSelector, useDispatch } from "react-redux";
+// import { Navigate, Route } from "react-router-dom";
 
-const ProtectedRoute = ({element}) => {
-  const { loading, isAuthenticated, user } = useSelector((state) => state.user);
+// const ProtectedRoute = ({element}) => {
+//   const { loading, isAuthenticated, user } = useSelector((state) => state.user);
 
-  return (
-    <Fragment>
+//   return (
+//     <Fragment>
     
-    </Fragment>
-  )
-}
+//     </Fragment>
+//   )
+// }
 
-export default ProtectedRoute
+// export default ProtectedRoute

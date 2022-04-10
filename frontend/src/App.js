@@ -19,7 +19,9 @@ import store from './store';
 import { loadUser } from './actions/userAction';
 import UserOptions from './components/layout/Header/UserOptions.js'
 import { useSelector } from 'react-redux';
-import ProtectedRoute from './components/Route/ProtectedRoute';
+// import ProtectedRoute from './components/Route/ProtectedRoute';
+import UpdateProfile from './components/User/UpdateProfile.js';
+
 
 
 function App() {
@@ -47,11 +49,12 @@ function App() {
         <Route exact path="/product/:id" element={<ProductDetails />} />
         <Route exact path="/products" element={<Products />} />
         <Route exact path="/products/:keyword" element={<Products />} />
+        <Route exact path="/login" element={<LoginSignUp />} />
         <Route exact path="/search" element={<Search />} />
-        <Route exact path ="/account" element={<Profile/>}  />
+        <Route exact path="/account" element={<Profile />} />
 
-{/* 8:44 */}
-{/* TO DO PROTECTED PART FOR AFTER RELOADING ACOOUNT NOT SHOWING */}
+        {/* 8:44 */}
+        {/* TO DO PROTECTED PART FOR AFTER RELOADING ACOOUNT NOT SHOWING */}
         {/* <Route
           exact path="/account"
           element={
@@ -61,7 +64,14 @@ function App() {
           }
         /> */}
 
-        <Route exact path="/login" element={<LoginSignUp />} />
+
+        <Route exact path="/me/update" element={<UpdateProfile />} />
+        {/* //to DO PROTECTED FOR UPDATE PROFILE ROUTE */}
+
+
+
+
+
 
       </Routes>
       <Footer />
