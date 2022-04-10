@@ -50,7 +50,6 @@ const Products = () => {
       alert.error(error);
       dispatch(clearErrors());
     }
-
     dispatch(getProducts(keyword.keyword, currentPage,price,category,ratings));
   }, [dispatch, error, alert, keyword.keyword, currentPage,price,category,ratings]);
   return (
