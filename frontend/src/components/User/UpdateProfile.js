@@ -104,11 +104,11 @@ const UpdateProfile = () => {
           <MailOutlineIcon />
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Email" 
             required
             name="email"
             value={email}
-            onChange={(e)=>setName(e.target.value)}
+            onChange={(e)=>setEmail(e.target.value)}
             />
         </div>
         <div id="updateProfileImage">
