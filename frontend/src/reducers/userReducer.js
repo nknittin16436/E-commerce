@@ -18,9 +18,12 @@ import {
     UPDATE_PASSWORD_SUCCESS,
     UPDATE_PASSWORD_RESET,
     UPDATE_PASSWORD_FAIL,
-    FORGOT_PASSWORD_REQUEST,
     FORGOT_PASSWORD_SUCCESS,
+    FORGOT_PASSWORD_REQUEST,
     FORGOT_PASSWORD_FAIL,
+    RESET_PASSWORD_SUCCESS,
+    RESET_PASSWORD_REQUEST,
+    RESET_PASSWORD_FAIL,
     CLEAR_ERRORS
 } from '../constants/userConstant'
 
@@ -73,12 +76,12 @@ export const userReducer = (state = { user: {} }, action) => {
             }
 
 
-            case LOGOUT_FAIL:
-                return{
-                    ...state,
-                    loading:false,
-                    error:action.payload
-                }
+        case LOGOUT_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
         case CLEAR_ERRORS:
 
             return {
@@ -98,13 +101,13 @@ export const userReducer = (state = { user: {} }, action) => {
 export const profileReducer = (state = { }, action) => {
     switch (action.type) {
         case UPDATE_PROFILE_REQUEST:
-            case UPDATE_PASSWORD_REQUEST:
+        case UPDATE_PASSWORD_REQUEST:
             return {
                 ...state,
                 loading: true,
             }
         case UPDATE_PROFILE_SUCCESS:
-            case UPDATE_PASSWORD_SUCCESS:
+        case UPDATE_PASSWORD_SUCCESS:
             return {
                 ...state,
                 loading: false,
@@ -142,23 +145,32 @@ export const profileReducer = (state = { }, action) => {
 
 
 //FOR FORGOT PASSWORD
-export const forgotPasswordReducer = (state = { }, action) => {
+export const forgotPasswordReducer = (state = {}, action) => {
     switch (action.type) {
-            case FORGOT_PASSWORD_REQUEST:
+        case FORGOT_PASSWORD_REQUEST:
+        case RESET_PASSWORD_REQUEST:
             return {
                 ...state,
                 loading: true,
-                error:null
+                error: null
             }
-            case FORGOT_PASSWORD_SUCCESS:
+        case FORGOT_PASSWORD_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 message: action.payload
             }
 
-        
+        case RESET_PASSWORD_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                success: action.payload
+            }
+
+
         case FORGOT_PASSWORD_FAIL:
+        case RESET_PASSWORD_FAIL:
 
             return {
                 ...state,

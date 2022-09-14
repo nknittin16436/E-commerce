@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect ,useState} from "react";
 
 import Carousel from "react-material-ui-carousel";
 import { useDispatch, useSelector } from "react-redux";
@@ -38,6 +38,17 @@ const ProductDetails = () => {
     value: product.ratings,
     isHalf: true,
   };
+
+  const [quantity, setQuantity] = useState(1);
+  const increaseQuantity=()=>{
+    if(product.stock<=quantity) return;
+    setQuantity(quantity+1);
+  }
+  const decreaseQuantity=()=>{
+    if(1>=quantity) return; 
+    setQuantity(quantity-1);
+    console.log("minus");
+  }
   return (
     <Fragment>
       {loading ?(<Loader/> ):(
@@ -72,9 +83,12 @@ const ProductDetails = () => {
               <h1>{`₹ ${product.price}`}</h1>
               <div className="detailsBlock-3-1">
                 <div className="detailsBlock-3-1-1">
-                  <button>-</button>
-                  <input type="number" value={1} />
-                  <button>+</button>
+                  <button onClick={decreaseQuantity}>-</button>
+                  {/* <input type="number" defaultValue={quantity} /> */}
+                  <span style={{margin:'auto 10px'}}>
+                  {quantity}
+                  </span>
+                  <button onClick={increaseQuantity}>+</button>
                 </div>{" "}
                 <button>Add To Cart</button>
               </div>
@@ -82,7 +96,7 @@ const ProductDetails = () => {
               <p>
                 Status :{" "}
                 <b className={product.stock < 1 ? "redColor" : "greenColor"}>
-                  {product.stock < 1 ? "Out Of Stock" : "InStock"}
+                  {product.stock < 1 ? "Out Of Stock" : "In Stock"}
                 </b>
               </p>
             </div>
@@ -99,7 +113,7 @@ const ProductDetails = () => {
           <div className="reviews">
             {product.reviews&&
             
-               product.reviews.map((review)=> <ReviewCard review={review}/>)
+               product.reviews.map((review,index)=> <ReviewCard review={review} key={index}/>)
             }
           </div>
         ):(

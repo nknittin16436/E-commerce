@@ -46,13 +46,13 @@ exports.loginUser = catchAsyncError(async (req, res, next) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-        return next(new ErrorHandler("Please enter email and password", 400))
+        return next(new ErrorHandler("Please enter email and password", 400));
     }
 
 
     const user = await User.findOne({ email }).select("+password");
     if (!user) {
-        return next(new ErrorHandler("Invalid email or password", 400))
+        return next(new ErrorHandler("Invalid email or password", 400));
 
     }
     // console.log(user);
@@ -109,13 +109,12 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
 
     await user.save({ validateBeforeSave: false });
 
-    const resetPasswordUrl = `${req.protocol}://${req.get('host')}/api/v1/password/reset/${resetToken}`;
+    // const resetPasswordUrl = `${req.protocol}://${req.get('host')}/api/v1/password/reset/${resetToken}`;
+    const resetPasswordUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;  //temporarily hardcodein url 
 
     const message = `Your password reset link is \n\n  click to reset password \n ${resetPasswordUrl} \n\n If you have not requested this email then please igore it.`;
 
-
-
-
+    
     try {
 
         await sendEmail({
