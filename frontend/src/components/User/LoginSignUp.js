@@ -1,7 +1,7 @@
 import React, { Fragment, useRef, useState, useEffect } from "react";
 import "./LoginSignUp.css";
 import Loader from "../layout/Loader/Loader";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
@@ -14,7 +14,7 @@ const LoginSignUp = () => {
 
 
   let navigate = useNavigate();
-
+  const location = useLocation()
   const dispatch = useDispatch();
   const alert = useAlert();
 
@@ -44,16 +44,16 @@ const LoginSignUp = () => {
     // console.log("Form Submitted");
     dispatch(login(loginEmail, loginPassword));
   };
-
+  const redirect = location.search ? `/${location.search.split("=")[1]}` : "/account";
   useEffect(() => {
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
     if (isAuthenticated) {
-      navigate('/account');
+      navigate(redirect);
     }
-  }, [dispatch, error, alert, isAuthenticated, navigate]);
+  }, [dispatch, error, alert, isAuthenticated, navigate,redirect]);
   const switchTabs = (e, tab) => {
     if (tab === "login") {
       switcherTab.current.classList.add("shiftToNeutral");
