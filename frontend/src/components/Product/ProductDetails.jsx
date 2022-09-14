@@ -50,7 +50,7 @@ const ProductDetails = () => {
 
   const addToCartHandler = () => {
     dispatch(addItemsToCart(id, quantity));
-    alert.success("Item added to cart")
+    alert.success("Item added to cart");
   };
   return (
     <Fragment>
