@@ -29,7 +29,7 @@ const orderSchema = new mongoose.Schema({
             required: [true, "Please Enter pinCode"],
 
         },
-        phone: {
+        phoneNo: {
             type: Number,
             required: [true, "Please Enter phone"],
 

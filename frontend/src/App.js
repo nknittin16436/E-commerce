@@ -33,6 +33,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import {
   Elements
 } from '@stripe/react-stripe-js';
+import OrderSuccess from './components/Cart/OrderSuccess';
 
 
 
@@ -111,20 +112,22 @@ function App() {
 
 
 
-      {/* make protected route */}
+        {/* make protected route */}
         {stripeApiKey && (
           <Route
             exact
             path="/process/payment"
             element={(
               <Elements stripe={loadStripe(stripeApiKey)}>
-                <Payment/>
+                <Payment />
               </Elements>
             )}
           />
         )}
 
 
+        {/* protected route */}
+        <Route exact path="/success" element={<OrderSuccess />} />
 
 
 
