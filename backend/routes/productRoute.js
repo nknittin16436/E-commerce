@@ -13,7 +13,7 @@ router.route("/admin/products/:id").put(isUserAuthenticated, authorizeRoles("adm
 router.route("/product/:id").get(getProductDetails);
 
 
-router.route("/review").post(isUserAuthenticated,createProductReview);
+router.route("/review").put(isUserAuthenticated,createProductReview);
 router.route("/reviews").get(getProductReviews).delete(isUserAuthenticated,deleteProductReview);
 
 module.exports = router

@@ -4,14 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import MetaData from "../layout/MetaData";
 import CheckoutSteps from "./CheckoutSteps";
 import { useAlert } from "react-alert";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { Typography } from "@mui/material";
 
 import {
   CardNumberElement,
   CardCvcElement,
   CardExpiryElement,
-  Elements,
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";

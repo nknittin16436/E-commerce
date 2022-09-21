@@ -36,6 +36,7 @@ import {
 import OrderSuccess from './components/Cart/OrderSuccess';
 import MyOrders from './components/Order/MyOrders'
 import OrderDetails from './components/Order/OrderDetails'
+import Dashboard from './components/Admin/Dashboard.jsx'
 
 
 
@@ -138,6 +139,10 @@ function App() {
         {/* protected route */}
         <Route exact path="/order/confirm" element={<ConfirmOrder />} />
         <Route exact path="/order/:id" element={<OrderDetails />} />
+
+
+{/****************************************************** ADMIN----ROUTES ********************************************/}
+        <Route exact path="/admin/dashboard" element={<Dashboard />} />
 
       </Routes>
       <Footer />
