@@ -34,6 +34,8 @@ import {
   Elements
 } from '@stripe/react-stripe-js';
 import OrderSuccess from './components/Cart/OrderSuccess';
+import MyOrders from './components/Order/MyOrders'
+import OrderDetails from './components/Order/OrderDetails'
 
 
 
@@ -108,7 +110,6 @@ function App() {
 
 
         {/* protected route */}
-        <Route exact path="/order/confirm" element={<ConfirmOrder />} />
 
 
 
@@ -129,7 +130,14 @@ function App() {
         {/* protected route */}
         <Route exact path="/success" element={<OrderSuccess />} />
 
+        {/* protected route */}
+        <Route exact path="/orders" element={<MyOrders />} />
 
+
+        
+        {/* protected route */}
+        <Route exact path="/order/confirm" element={<ConfirmOrder />} />
+        <Route exact path="/order/:id" element={<OrderDetails />} />
 
       </Routes>
       <Footer />
