@@ -55,6 +55,10 @@ exports.getAllProducts = catchAsyncError(async (req, res, next) => {
       products = await apiFeature.query.clone();
       res.status(200).json({ success: true, products, productsCount, resultPerPage,filteredProductsCount });
 });
+exports.getAdminProducts = catchAsyncError(async (req, res, next) => {
+      const products = await Product.find();
+      res.status(200).json({ success: true, products });
+});
 
 // UPDATE PRODUCT--Admin
 exports.updateProduct = catchAsyncError(async (req, res, next) => {

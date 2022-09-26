@@ -25,21 +25,19 @@ const Sidebar = () => {
           Dashboard
         </p>
       </Link>
-      <Link to="">
-        <TreeView
-          defaultExpandIcon={<ImportExportIcon />}
-          defaultCollapseIcon={<ExpandMoreIcon />}
-        >
-          <TreeItem nodeId="1" label="Products">
-            <Link to="/admin/products">
-              <TreeItem nodeId="2" label="All" icon={<PostAddIcon />} />
-            </Link>
-            <Link to="/admin/product">
-              <TreeItem nodeId="3" label="Create" icon={<AddIcon />} />
-            </Link>
-          </TreeItem>
-        </TreeView>
-      </Link>
+      <TreeView
+        defaultExpandIcon={<ImportExportIcon />}
+        defaultCollapseIcon={<ExpandMoreIcon />}
+      >
+        <TreeItem nodeId="1" label="Products">
+          <Link to="/admin/products">
+            <TreeItem nodeId="2" label="All" icon={<PostAddIcon />} />
+          </Link>
+          <Link to="/admin/product">
+            <TreeItem nodeId="3" label="Create" icon={<AddIcon />} />
+          </Link>
+        </TreeItem>
+      </TreeView>
       <Link to="/admin/orders">
         <p>
           <ListAltIcon />
