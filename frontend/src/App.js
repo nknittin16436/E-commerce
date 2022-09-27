@@ -38,6 +38,7 @@ import MyOrders from './components/Order/MyOrders'
 import OrderDetails from './components/Order/OrderDetails'
 import Dashboard from './components/Admin/Dashboard'
 import ProductList from './components/Admin/ProductList'
+import NewProduct from './components/Admin/NewProduct';
 
 
 
@@ -145,6 +146,7 @@ function App() {
 {/****************************************************** ADMIN----ROUTES ********************************************/}
         <Route exact path="/admin/dashboard" element={<Dashboard />} />
         <Route exact path="/admin/products" element={<ProductList />} />
+        <Route exact path="/admin/product" element={<NewProduct />} />
 
       </Routes>
       <Footer />
