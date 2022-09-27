@@ -10,21 +10,33 @@ import { DataGrid } from "@material-ui/data-grid";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button } from "@material-ui/core";
-import { clearErrors, getAdminProducts } from "../../actions/productAction";
+import { clearErrors, getAdminProducts, deleteProduct } from "../../actions/productAction";
+import { DELETE_PRODUCT_RESET } from "../../constants/productConstant.js";
 const ProductList = () => {
   const dispatch = useDispatch();
   const alert = useAlert();
 
   const { error, products } = useSelector((state) => state.products);
+  const { error:deleteError, isDeleted } = useSelector((state) => state.deleteProduct);
 
-  const deleteProductHandler = () => {};
+  const deleteProductHandler = (id) => {
+    dispatch(deleteProduct(id));
+  };
   useEffect(() => {
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
+    if (deleteError) {
+      alert.error(deleteError);
+      dispatch(clearErrors());
+    }
+    if(isDeleted){
+      alert.success("Product Deleted Succesfully");
+      dispatch({type:DELETE_PRODUCT_RESET});
+    }
     dispatch(getAdminProducts());
-  }, [dispatch]);
+  }, [dispatch,deleteError,error,isDeleted,alert]);
 
 
   const columns = [
