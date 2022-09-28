@@ -17,6 +17,7 @@ import {
 } from "chart.js";
 import { Doughnut, Line } from "react-chartjs-2";
 import { getAdminProducts, clearErrors } from "../../actions/productAction.js";
+import { getAllOrders } from "../../actions/orderAction.js";
 
 ChartJS.register(
   CategoryScale,
@@ -32,6 +33,7 @@ ChartJS.register(
 const Dashboard = () => {
   const dispatch = useDispatch();
   const { error, products } = useSelector((state) => state.products);
+  const { error: orderError, orders } = useSelector((state) => state.allOrders);
   let outOfStock = 0;
   products &&
     products.forEach((item) => {
@@ -44,7 +46,12 @@ const Dashboard = () => {
       alert.error(error);
       dispatch(clearErrors());
     }
+    if (orderError) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
     dispatch(getAdminProducts());
+    dispatch(getAllOrders());
   }, [dispatch]);
   const linestate = {
     labels: ["Initial Amount", "Amount Earned"],
@@ -88,7 +95,7 @@ const Dashboard = () => {
             </Link>
             <Link to="/admin/orders">
               <p>Orders</p>
-              <p>30</p>
+              <p>{orders && orders.length}</p>
             </Link>
             <Link to="/admin/users">
               <p>Users</p>

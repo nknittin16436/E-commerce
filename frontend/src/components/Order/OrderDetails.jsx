@@ -39,7 +39,7 @@ const OrderDetails = () => {
               <div className="orderDetailsContainerBox">
                 <div>
                   <p>Name:</p>
-                  <span>{order.user && order.user.name}</span>
+                  <span>{order.user && order.user}</span>
                 </div>
                 <div>
                   <p>Phone:</p>
@@ -61,13 +61,13 @@ const OrderDetails = () => {
                   <p
                     className={
                       order.paymentInfo &&
-                      order.paymentInfo.status === "succeeded"
+                        order.paymentInfo.status === "succeeded"
                         ? "greenColor"
                         : "redColor"
                     }
                   >
                     {order.paymentInfo &&
-                    order.paymentInfo.status === "succeeded"
+                      order.paymentInfo.status === "succeeded"
                       ? "PAID"
                       : "NOT PAID"}
                   </p>

@@ -1,6 +1,6 @@
 
 const Order = require("../models/orderModel");
-const Product=require('../models/productModel');
+const Product = require('../models/productModel');
 const ErrorHandler = require("../utils/Errorhandler");
 const catchAsyncError = require("../middleware/catchAsyncError");
 
@@ -91,12 +91,14 @@ exports.updateOrder = catchAsyncError(async (req, res, next) => {
         return next(new ErrorHandler("Order not fount with this Id"), 404);
     }
 
-    if (order.orderStatus=== "Delivered") {
+    if (order.orderStatus === "Delivered") {
         return next(new ErrorHandler("You have already delivered this order", 400));
     }
-    order.orderItems.forEach(async (order) => {
-        await updateStock(order.product, order.quantity);
-    })
+    if (req.body.status === "Shipped") {
+        order.orderItems.forEach(async (order) => {
+            await updateStock(order.product, order.quantity);
+        })
+    }
 
     order.orderStatus = req.body.status;
 
@@ -116,8 +118,6 @@ exports.deleteOrder = catchAsyncError(async (req, res, next) => {
     }
 
     await order.remove();
-
-
     res.status(200).json({
         success: true,
     })
@@ -126,6 +126,7 @@ exports.deleteOrder = catchAsyncError(async (req, res, next) => {
 //FUNCTION TO UPDATE STOCK OF PRODUCT
 async function updateStock(id, quantity) {
     const product = await Product.findById(id);
+    console.log(product);
     product.stock -= quantity;
     await product.save({ validateBeforeSave: false });
 } 

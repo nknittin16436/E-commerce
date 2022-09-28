@@ -70,9 +70,6 @@ exports.loginUser = catchAsyncError(async (req, res, next) => {
     //    }
     //    const authToken = jwt.sign(data, process.env.JWT_SECRET);
     //     res.status(200).json({success:true,user,authToken})
-
-
-
     sendToken(user, 200, res);
 });
 
