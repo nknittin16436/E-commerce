@@ -22,6 +22,18 @@ import {
   RESET_PASSWORD_SUCCESS,
   RESET_PASSWORD_REQUEST,
   RESET_PASSWORD_FAIL,
+  All_USERS_REQUEST,
+  All_USERS_SUCCESS,
+  All_USERS_FAIL,
+  USER_DETAILS_REQUEST,
+  USER_DETAILS_SUCCESS,
+  USER_DETAILS_FAIL,
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAIL,
+  DELETE_USER_REQUEST,
+  DELETE_USER_SUCCESS,
+  DELETE_USER_FAIL,
   CLEAR_ERRORS
 } from '../constants/userConstant'
 import axios from "axios";
@@ -72,13 +84,53 @@ export const register = (userData) => async (dispatch) => {
 export const loadUser = () => async (dispatch) => {
   try {
     dispatch({ type: LOAD_USER_REQUEST });
-
-
     const { data } = await axios.get(`/api/v1/me`);
-
     dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
   } catch (error) {
     dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
+  }
+};
+
+
+export const getAllUsers = () => async (dispatch) => {
+  try {
+    dispatch({ type: All_USERS_REQUEST });
+    const { data } = await axios.get(`/api/v1/admin/users`);
+    dispatch({ type: All_USERS_SUCCESS, payload: data.users });
+  } catch (error) {
+    dispatch({ type: All_USERS_FAIL, payload: error.response.data.message });
+  }
+};
+
+
+export const getUserDetails = (userId) => async (dispatch) => {
+  try {
+    dispatch({ type: USER_DETAILS_REQUEST });
+    const { data } = await axios.get(`/api/v1/admin/user/${userId}`);
+    dispatch({ type: USER_DETAILS_SUCCESS, payload: data.user });
+  } catch (error) {
+    dispatch({ type: USER_DETAILS_FAIL, payload: error.response.data.message });
+  }
+};
+
+
+export const updateUser = (userId, userData) => async (dispatch) => {
+  try {
+    dispatch({ type: UPDATE_USER_REQUEST });
+    const { data } = await axios.put(`/api/v1/admin/user/${userId}`, userData);
+    dispatch({ type: UPDATE_USER_SUCCESS, payload: data.success });
+  } catch (error) {
+    dispatch({ type: UPDATE_USER_FAIL, payload: error.response.data.message });
+  }
+};
+
+export const deleteUser = (userId) => async (dispatch) => {
+  try {
+    dispatch({ type: DELETE_USER_REQUEST });
+    const { data } = await axios.delete(`/api/v1/admin/user/${userId}`);
+    dispatch({ type: DELETE_USER_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: DELETE_USER_FAIL, payload: error.response.data.message });
   }
 };
 
@@ -164,7 +216,7 @@ export const forgotPassword = (email) => async (dispatch) => {
 
 
 // RESETT PASSWORD
-export const resetPassword = (token,passwords) => async (dispatch) => {
+export const resetPassword = (token, passwords) => async (dispatch) => {
   try {
     dispatch({ type: RESET_PASSWORD_REQUEST });
 

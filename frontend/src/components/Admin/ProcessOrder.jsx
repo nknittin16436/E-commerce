@@ -17,7 +17,7 @@ import { UPDATE_ORDERS_RESET } from "../../constants/orderConstant";
 import { useNavigate, useParams,Link } from "react-router-dom";
 
 const ProcessOrder = () => {
-    const naviagate = useNavigate();
+    const navigate = useNavigate();
     const { order, error, loading } = useSelector((state) => state.orderDetails);
     const { error: updateError, isUpdated } = useSelector((state) => state.order);
     const { id } = useParams();
@@ -48,10 +48,11 @@ const ProcessOrder = () => {
         if (isUpdated) {
             alert.success("Order Updated Successfully");
             dispatch({ type: UPDATE_ORDERS_RESET });
+            navigate('/admin/orders')
         }
 
         dispatch(getOrderDetails(id));
-    }, [dispatch, alert, error, id, isUpdated, updateError]);
+    }, [dispatch, alert, error, id, isUpdated, updateError,navigate]);
 
     return (
         <Fragment>

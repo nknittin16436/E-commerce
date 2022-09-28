@@ -42,6 +42,7 @@ import NewProduct from './components/Admin/NewProduct';
 import UpdateProduct from './components/Admin/UpdateProduct';
 import OrderList from './components/Admin/OrderList';
 import ProcessOrder from './components/Admin/ProcessOrder';
+import UsersList from './components/Admin/UsersList';
 
 
 
@@ -153,6 +154,7 @@ function App() {
         <Route exact path="/admin/product/:id" element={<UpdateProduct />} />
         <Route exact path="/admin/orders" element={<OrderList />} />
         <Route exact path="/admin/order/:id" element={<ProcessOrder />} />
+        <Route exact path="/admin/users" element={<UsersList />} />
 
       </Routes>
       <Footer />

@@ -16,10 +16,10 @@ const cloudinary = require('cloudinary');
 /****************************************************REGISTER USER ****************************************************************/
 exports.registerUser = catchAsyncError(async (req, res, next) => {
 
-    const myCloud=await cloudinary.v2.uploader.upload(req.body.avatar,{
-        folder:"avatars",
-        width:150,
-        crop:"scale",
+    const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+        folder: "avatars",
+        width: 150,
+        crop: "scale",
     })
     const { name, email, password } = req.body;
 
@@ -27,7 +27,7 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
         name, email, password,
         avatar: {
             public_id: myCloud.public_id,
-            url:myCloud.secure_url
+            url: myCloud.secure_url
         }
 
     })
@@ -111,7 +111,7 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
 
     const message = `Your password reset link is \n\n  click to reset password \n ${resetPasswordUrl} \n\n If you have not requested this email then please igore it.`;
 
-    
+
     try {
 
         await sendEmail({
@@ -226,25 +226,25 @@ exports.updateProfile = catchAsyncError(async (req, res, next) => {
         email: req.body.email,
     };
 
-    if(req.body.avatar!==""){
-        const user=await User.findById(req.user.id);
+    if (req.body.avatar !== "") {
+        const user = await User.findById(req.user.id);
 
-        const imageId=user.avatar.public_id;
+        const imageId = user.avatar.public_id;
 
-    await cloudinary.v2.uploader.destroy(imageId);
-    const myCloud=await cloudinary.v2.uploader.upload(req.body.avatar,{
-        folder:"avatars",
-        width:150,
-        crop:"scale",
-    })
+        await cloudinary.v2.uploader.destroy(imageId);
+        const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+            folder: "avatars",
+            width: 150,
+            crop: "scale",
+        })
 
-    
-    newUserData.avatar= {
+
+        newUserData.avatar = {
             public_id: myCloud.public_id,
-            url:myCloud.secure_url
+            url: myCloud.secure_url
         }
 
-    
+
 
     }
 
@@ -300,8 +300,8 @@ exports.updateUserRole = catchAsyncError(async (req, res, next) => {
         // email: req.body.email,
         role: req.body.role,
     };
-      
-///can add check if user exist or not *******************************************************************///////
+
+    ///can add check if user exist or not *******************************************************************///////
     const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
         new: true,
         runValidators: true,
@@ -326,6 +326,10 @@ exports.deleteProfile = catchAsyncError(async (req, res, next) => {
     if (!user) {
         return next(new ErrorHandler(`User does not exist with id ${req.params.id}`))
     }
+
+
+    const imageId = user.avatar.public_id;
+    await cloudinary.v2.uploader.destroy(imageId);
 
     await user.remove();
     res.status(200).json({
