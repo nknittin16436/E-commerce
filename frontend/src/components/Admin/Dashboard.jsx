@@ -59,7 +59,14 @@ const Dashboard = () => {
     dispatch(getAdminProducts());
     dispatch(getAllOrders());
     dispatch(getAllUsers());
-  }, [dispatch,error,orderError,userError]);
+  }, [dispatch, error, orderError, userError]);
+
+  let totalAmount = 0;
+  orders && orders.forEach((order) => {
+    totalAmount += order.totalPrice
+  })
+
+
   const linestate = {
     labels: ["Initial Amount", "Amount Earned"],
     datasets: [
@@ -67,7 +74,7 @@ const Dashboard = () => {
         label: "Total Amount",
         backgroundColor: ["tomato"],
         hoverBackgroundColor: ["rgb(197,72,49)"],
-        data: [0, 4000],
+        data: [0, totalAmount],
       },
     ],
   };
@@ -92,7 +99,7 @@ const Dashboard = () => {
           <div>
             <p>
               Total Amount <br />
-              ₹200
+              ₹{totalAmount}
             </p>
           </div>
           <div className="dashboardSummaryBox2">

@@ -43,8 +43,11 @@ import UpdateProduct from './components/Admin/UpdateProduct';
 import OrderList from './components/Admin/OrderList';
 import ProcessOrder from './components/Admin/ProcessOrder';
 import UsersList from './components/Admin/UsersList';
-import UpdateUser from './components/Admin/UpdateUser.jsx';
-import ProductReviews from './components/Admin/ProductReviews.jsx';
+import UpdateUser from './components/Admin/UpdateUser';
+import ProductReviews from './components/Admin/ProductReviews';
+import About from './components/layout/About/About';
+import Contact from './components/layout/Contact/Contact';
+import NotFound from './components/layout/NotFound/Notfound';
 
 
 
@@ -70,7 +73,7 @@ function App() {
     getStripeApiKey();
   }, [])
 
-
+  window.addEventListener("contextmenu", (e) => e.preventDefault());
   return (
 
     <Router>
@@ -143,13 +146,15 @@ function App() {
         <Route exact path="/orders" element={<MyOrders />} />
 
 
-        
+
         {/* protected route */}
         <Route exact path="/order/confirm" element={<ConfirmOrder />} />
         <Route exact path="/order/:id" element={<OrderDetails />} />
 
+        <Route exact path="/about" element={<About />} />
+        <Route exact path="/contact" element={<Contact />} />
 
-{/****************************************************** ADMIN----ROUTES ********************************************/}
+        {/****************************************************** ADMIN----ROUTES ********************************************/}
         <Route exact path="/admin/dashboard" element={<Dashboard />} />
         <Route exact path="/admin/products" element={<ProductList />} />
         <Route exact path="/admin/product" element={<NewProduct />} />
@@ -160,6 +165,7 @@ function App() {
         <Route exact path="/admin/user/:id" element={<UpdateUser />} />
         <Route exact path="/admin/reviews" element={<ProductReviews />} />
 
+        <Route exact path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </Router>
