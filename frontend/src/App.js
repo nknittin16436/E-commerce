@@ -43,6 +43,7 @@ import UpdateProduct from './components/Admin/UpdateProduct';
 import OrderList from './components/Admin/OrderList';
 import ProcessOrder from './components/Admin/ProcessOrder';
 import UsersList from './components/Admin/UsersList';
+import UpdateUser from './components/Admin/UpdateUser.jsx';
 
 
 
@@ -155,6 +156,7 @@ function App() {
         <Route exact path="/admin/orders" element={<OrderList />} />
         <Route exact path="/admin/order/:id" element={<ProcessOrder />} />
         <Route exact path="/admin/users" element={<UsersList />} />
+        <Route exact path="/admin/user/:id" element={<UpdateUser />} />
 
       </Routes>
       <Footer />

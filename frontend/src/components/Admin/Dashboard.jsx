@@ -59,7 +59,7 @@ const Dashboard = () => {
     dispatch(getAdminProducts());
     dispatch(getAllOrders());
     dispatch(getAllUsers());
-  }, [dispatch]);
+  }, [dispatch,error,orderError,userError]);
   const linestate = {
     labels: ["Initial Amount", "Amount Earned"],
     datasets: [

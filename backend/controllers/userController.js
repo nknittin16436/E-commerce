@@ -296,21 +296,20 @@ exports.getSingleUser = catchAsyncError(async (req, res, next) => {
 exports.updateUserRole = catchAsyncError(async (req, res, next) => {
 
     const newUserData = {
-        // name: req.body.name,
-        // email: req.body.email,
+        name: req.body.name,
+        email: req.body.email,
         role: req.body.role,
     };
-
+  
     ///can add check if user exist or not *******************************************************************///////
-    const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+    await User.findByIdAndUpdate(req.params.id, newUserData, {
         new: true,
         runValidators: true,
         useFindAndModify: false
     });
 
     res.status(200).json({
-        success: true,
-        user
+        success: true
     })
 
 });
